@@ -1,19 +1,17 @@
 import { useState } from "react";
 import mockup from "../Mockup";
-
 /* eslint-disable react/prop-types */
 const Test2 = (props) => {
-  const [open, setOpen] = useState(false);
   const [list, setList] = useState(mockup);
-  const [listRef] = useState(list); // เราต้องเอาข้อมูลของ mockup ที่เก็บใน list มาใช้ เพราะมันเรนเดอร์รอบเดียว
+  const [listRef] = useState(list);
+  const [open, setOpen] = useState(false);
   const [popUp, setPopUp] = useState();
   const [selectedStock, setSelectedStock] = useState("all");
   const [selectedType, setSelectedType] = useState("all");
-
   const onClose = () => {
     setList(mockup);
-    setSelectedType("all");
     setSelectedStock("all");
+    setSelectedType("all");
   };
   return (
     <div>
@@ -27,7 +25,7 @@ const Test2 = (props) => {
             <i
               className="fa-solid fa-magnifying-glass"
               onClick={() => {
-                setOpen(!open);
+                return setOpen(!open);
               }}
             ></i>
           </li>
@@ -38,16 +36,18 @@ const Test2 = (props) => {
       </div>
       <div className="Container">
         {popUp && (
-          <div className="warp-container">
-            <div className="listcontainercard">
-              <img className="listcontainerimg" src={popUp.img} alt="image" />
-              <div className="listcontainercardtext">
-                <div className="listcontainercardtextname">
-                  <p>{popUp.name}</p>
-                  <p>{popUp.score}</p>
-                </div>
-                <div className="listcontainercardtextprice">
-                  <h2>{popUp.price}</h2>
+          <div>
+            <div className="warp-container">
+              <div className="listcontainercard">
+                <img className="listcontainerimg" src={popUp.img} alt="image" />
+                <div className="listcontainercardtext">
+                  <div className="listcontainercardtextname">
+                    <p>{popUp.name}</p>
+                    <p>{popUp.score}</p>
+                  </div>
+                  <div className="listcontainercardtextprice">
+                    <h2>{popUp.price}</h2>
+                  </div>
                 </div>
               </div>
             </div>
@@ -66,11 +66,11 @@ const Test2 = (props) => {
             </div>
             <div>
               <i
+                className="fa-solid fa-circle-xmark"
                 onClick={() => {
                   setOpen(!open);
                   onClose();
                 }}
-                className="fa-solid fa-circle-xmark"
               ></i>
             </div>
           </div>
@@ -78,6 +78,7 @@ const Test2 = (props) => {
             <div className="choice">
               <div className="choicemenu">
                 <button
+                  className={selectedType === "food" && "isSelected"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -95,6 +96,7 @@ const Test2 = (props) => {
                   Food
                 </button>
                 <button
+                  className={selectedType === "dessert" && "isSelected"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -112,6 +114,7 @@ const Test2 = (props) => {
                   Dessert
                 </button>
                 <button
+                  className={selectedType === "drink" && "isSelected"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -129,6 +132,7 @@ const Test2 = (props) => {
                   Drink
                 </button>
                 <button
+                  className={selectedType === "all" && "isSelected"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -138,6 +142,7 @@ const Test2 = (props) => {
                       );
                     });
                     setList(newlist);
+                    setSelectedType("all");
                   }}
                 >
                   All
@@ -145,6 +150,7 @@ const Test2 = (props) => {
               </div>
               <div className="choicesold">
                 <button
+                  className={selectedStock === "in stock" && "isSelected"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       return (
@@ -159,6 +165,7 @@ const Test2 = (props) => {
                   In Stock
                 </button>
                 <button
+                  className={selectedStock === "out of stock" && "isSelected"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       return (
@@ -175,41 +182,35 @@ const Test2 = (props) => {
               </div>
             </div>
             <div className="listdialog">
-              {list.map((item, index) => (
-                <div
-                  key={index}
-                  className="warp-listdialog"
-                  onClick={() => {
-                    setOpen(!open);
-                    setPopUp(item);
-                  }}
-                >
-                  <div className="listdialogcard">
-                    <img
-                      src={item.img}
-                      alt={item.name}
-                      className="listdialogimg"
-                    />
-                    <div className="listdialogcardtext">
-                      <div className="listdialogcardtextname">
-                        <p>{item.name}</p>
-                        <p>
-                          {Array.from({ length: 5 }).map((_, index) => {
-                            return index < item.score ? (
-                              <i key={index} className="fa-solid fa-star"></i>
-                            ) : (
-                              <i key={index} className="fa-regular fa-star"></i>
-                            );
-                          })}
-                        </p>
-                      </div>
-                      <div className="listdialogcardtextprice">
-                        <h2>{item.price}</h2>
+              {list.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="warp-listdialog"
+                    onClick={() => {
+                      setOpen(!open);
+                      setPopUp(item);
+                    }}
+                  >
+                    <div className="listdialogcard">
+                      <img
+                        src={item.img}
+                        alt={item.name}
+                        className="listdialogimg"
+                      />
+                      <div className="listdialogcardtext">
+                        <div className="listdialogcardtextname">
+                          <p>{item.name}</p>
+                          <p>{item.score}</p>
+                        </div>
+                        <div className="istdialogcardtextprice">
+                          <h2>{item.price}</h2>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
