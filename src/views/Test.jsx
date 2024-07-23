@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useState } from "react";
-import mockup from "./Mockup";
+import mockup from "../Mockup";
 
 const Test = (props) => {
   const [open, setOpen] = useState(false);
@@ -15,7 +15,6 @@ const Test = (props) => {
     setList(mockup);
     setSelectedType("all");
     setSelectedStock("all");
-    console.log("OUT");
   };
   return (
     <div>
@@ -208,7 +207,15 @@ const Test = (props) => {
                     <div className="listdialogcardtext">
                       <div className="listdialogcardtextname">
                         <p>{item.name}</p>
-                        <p>{item.score}</p>
+                        <p>
+                          {Array.from({ length: 5 }).map((_, index) => {
+                            return index < item.score ? (
+                              <i key={index} className="fa-solid fa-star"></i>
+                            ) : (
+                              <i key={index} className="fa-regular fa-star"></i>
+                            );
+                          })}
+                        </p>
                       </div>
                       <div className="listdialogcardtextprice">
                         <h2>{item.price}</h2>

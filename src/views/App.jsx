@@ -1,7 +1,7 @@
 import Test from "./Test";
 import { useState } from "react";
 import Test2 from "./Test2";
-
+import "../css/App.css";
 const App = () => {
   const [selectTab, setSelectTab] = useState(0);
 
