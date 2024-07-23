@@ -5,6 +5,7 @@ import mockup from "../Mockup";
 const Test2 = (props) => {
   const [open, setOpen] = useState(false);
   const [list, setList] = useState(mockup);
+  const [listRef] = useState(list); // เราต้องเอาข้อมูลของ mockup ที่เก็บใน list มาใช้ เพราะมันเรนเดอร์รอบเดียว
   const [popUp, setPopUp] = useState();
   const [selectedStock, setSelectedStock] = useState("all");
   const [selectedType, setSelectedType] = useState("all");
@@ -78,7 +79,7 @@ const Test2 = (props) => {
               <div className="choicemenu">
                 <button
                   onClick={() => {
-                    const newlist = list.filter((item) => {
+                    const newlist = listRef.filter((item) => {
                       const statusStock =
                         item.stock > 0 ? "in stock" : "out of stock";
                       return (
@@ -95,7 +96,7 @@ const Test2 = (props) => {
                 </button>
                 <button
                   onClick={() => {
-                    const newlist = list.filter((item) => {
+                    const newlist = listRef.filter((item) => {
                       const statusStock =
                         item.stock > 0 ? "in stock" : "out of stock";
                       return (
@@ -112,7 +113,7 @@ const Test2 = (props) => {
                 </button>
                 <button
                   onClick={() => {
-                    const newlist = list.filter((item) => {
+                    const newlist = listRef.filter((item) => {
                       const statusStock =
                         item.stock > 0 ? "in stock" : "out of stock";
                       return (
@@ -129,7 +130,7 @@ const Test2 = (props) => {
                 </button>
                 <button
                   onClick={() => {
-                    const newlist = list.filter((item) => {
+                    const newlist = listRef.filter((item) => {
                       const statusStock =
                         item.stock > 0 ? "in stock" : "out of stock";
                       return (
@@ -145,7 +146,7 @@ const Test2 = (props) => {
               <div className="choicesold">
                 <button
                   onClick={() => {
-                    const newlist = list.filter((item) => {
+                    const newlist = listRef.filter((item) => {
                       return (
                         item.stock > 0 &&
                         (item.type === selectedType || selectedType === "all")
@@ -159,7 +160,7 @@ const Test2 = (props) => {
                 </button>
                 <button
                   onClick={() => {
-                    const newlist = list.filter((item) => {
+                    const newlist = listRef.filter((item) => {
                       return (
                         item.stock <= 0 &&
                         (item.type === selectedType || selectedType === "all")
