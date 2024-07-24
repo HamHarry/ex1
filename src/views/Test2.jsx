@@ -36,18 +36,24 @@ const Test2 = (props) => {
       </div>
       <div className="Container">
         {popUp && (
-          <div>
-            <div className="warp-container">
-              <div className="listcontainercard">
-                <img className="listcontainerimg" src={popUp.img} alt="image" />
-                <div className="listcontainercardtext">
-                  <div className="listcontainercardtextname">
-                    <p>{popUp.name}</p>
-                    <p>{popUp.score}</p>
-                  </div>
-                  <div className="listcontainercardtextprice">
-                    <h2>{popUp.price}</h2>
-                  </div>
+          <div className="warp-container">
+            <div className="listcontainercard">
+              <img className="listcontainerimg" src={popUp.img} alt="image" />
+              <div className="listcontainercardtext">
+                <div className="listcontainercardtextname">
+                  <p>{popUp.name}</p>
+                  <p>
+                    {Array.from({ length: 5 }).map((_, index) => {
+                      return index < popUp.score ? (
+                        <i className="fa-solid fa-star"></i>
+                      ) : (
+                        <i className="fa-regular fa-star"></i>
+                      );
+                    })}
+                  </p>
+                </div>
+                <div className="listcontainercardtextprice">
+                  <h2>{popUp.price}</h2>
                 </div>
               </div>
             </div>
@@ -201,7 +207,15 @@ const Test2 = (props) => {
                       <div className="listdialogcardtext">
                         <div className="listdialogcardtextname">
                           <p>{item.name}</p>
-                          <p>{item.score}</p>
+                          <p>
+                            {Array.from({ length: 5 }).map(() => {
+                              return index < item.score ? (
+                                <i className="fa-solid fa-star"></i>
+                              ) : (
+                                <i className="fa-regular fa-star"></i>
+                              );
+                            })}
+                          </p>
                         </div>
                         <div className="istdialogcardtextprice">
                           <h2>{item.price}</h2>

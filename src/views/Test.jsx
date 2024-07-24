@@ -43,7 +43,15 @@ const Test = (props) => {
               <div className="listcontainercardtext">
                 <div className="listcontainercardtextname">
                   <p>{menu.name}</p>
-                  <p>{menu.score}</p>
+                  <p>
+                    {Array.from({ length: 5 }).map((_, index) => {
+                      return index < menu.score ? (
+                        <i className="fa-solid fa-star"></i>
+                      ) : (
+                        <i className="fa-regular fa-star"></i>
+                      );
+                    })}
+                  </p>
                 </div>
                 <div className="listcontainercardtextprice">
                   <h2>{menu.price}</h2>
