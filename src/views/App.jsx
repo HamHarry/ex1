@@ -25,7 +25,7 @@ const App = () => {
         {tabs.map((_, index) => (
           <div
             className={`select-tab-button ${
-              selectTab === index && "isSelected"
+              selectTab === index ? "isSelected" : "button"
             }`}
             key={`tab_${index}`}
             onClick={() => setSelectTab(index)}

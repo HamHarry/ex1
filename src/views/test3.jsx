@@ -46,9 +46,13 @@ const Test3 = (props) => {
                   <p>
                     {Array.from({ length: 5 }).map((_, index) => {
                       return index < popUp.score ? (
-                        <i className="fa-solid fa-star"></i>
+                        <div key={index}>
+                          <i className="fa-solid fa-star"></i>
+                        </div>
                       ) : (
-                        <i className="fa-regular fa-star"></i>
+                        <div key={index}>
+                          <i className="fa-regular fa-star"></i>
+                        </div>
                       );
                     })}
                   </p>
@@ -85,6 +89,7 @@ const Test3 = (props) => {
             <div className="choice">
               <div className="choicemenu">
                 <button
+                  className={selectedType === "food" ? "isSelected" : "button"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -102,6 +107,9 @@ const Test3 = (props) => {
                   Food
                 </button>
                 <button
+                  className={
+                    selectedType === "dessert" ? "isSelected" : "button"
+                  }
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -119,6 +127,7 @@ const Test3 = (props) => {
                   Dessert
                 </button>
                 <button
+                  className={selectedType === "drink" ? "isSelected" : "button"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -136,6 +145,7 @@ const Test3 = (props) => {
                   Drink
                 </button>
                 <button
+                  className={selectedType === "all" ? "isSelected" : "button"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -153,6 +163,9 @@ const Test3 = (props) => {
               </div>
               <div className="choicesold">
                 <button
+                  className={
+                    selectedStock === "in stock" ? "isSelected" : "button"
+                  }
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       return (
@@ -162,11 +175,15 @@ const Test3 = (props) => {
                     });
                     setList(newlist);
                     setSelectedStock("in stock");
+                    console.log(selectedType);
                   }}
                 >
                   In Stock
                 </button>
                 <button
+                  className={
+                    selectedStock === "out of stock" ? "isSelected" : "button"
+                  }
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       return (
@@ -205,9 +222,13 @@ const Test3 = (props) => {
                           <p>
                             {Array.from({ length: 5 }).map((_, index) => {
                               return index < item.score ? (
-                                <i className="fa-solid fa-star"></i>
+                                <div key={index}>
+                                  <i className="fa-solid fa-star"></i>
+                                </div>
                               ) : (
-                                <i className="fa-regular fa-star"></i>
+                                <div key={index}>
+                                  <i className="fa-regular fa-star"></i>
+                                </div>
                               );
                             })}
                           </p>

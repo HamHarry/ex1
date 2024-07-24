@@ -46,9 +46,13 @@ const Test = (props) => {
                   <p>
                     {Array.from({ length: 5 }).map((_, index) => {
                       return index < menu.score ? (
-                        <i className="fa-solid fa-star"></i>
+                        <div key={index}>
+                          <i className="fa-solid fa-star"></i>
+                        </div>
                       ) : (
-                        <i className="fa-regular fa-star"></i>
+                        <div key={index}>
+                          <i className="fa-regular fa-star"></i>
+                        </div>
                       );
                     })}
                   </p>
@@ -79,7 +83,9 @@ const Test = (props) => {
                 <ul>
                   <li>
                     <button
-                      className={selectedType === "food" && "isSelected"}
+                      className={
+                        selectedType === "food" ? "isSelected" : "button"
+                      }
                       onClick={() => {
                         const newlist = listRef.filter((item) => {
                           const statusStock =
@@ -99,7 +105,9 @@ const Test = (props) => {
                   </li>
                   <li>
                     <button
-                      className={selectedType === "dessert" && "isSelected"}
+                      className={
+                        selectedType === "dessert" ? "isSelected" : "button"
+                      }
                       onClick={() => {
                         const newlist = listRef.filter((item) => {
                           const statusStock =
@@ -119,7 +127,9 @@ const Test = (props) => {
                   </li>
                   <li>
                     <button
-                      className={selectedType === "drink" && "isSelected"}
+                      className={
+                        selectedType === "drink" ? "isSelected" : "button"
+                      }
                       onClick={() => {
                         const newlist = listRef.filter((item) => {
                           const statusStock =
@@ -139,7 +149,9 @@ const Test = (props) => {
                   </li>
                   <li>
                     <button
-                      className={selectedType === "all" && "isSelected"}
+                      className={
+                        selectedType === "all" ? "isSelected" : "button"
+                      }
                       onClick={() => {
                         const newlist = listRef.filter((item) => {
                           const statusStock =
@@ -162,7 +174,9 @@ const Test = (props) => {
                 <ul>
                   <li>
                     <button
-                      className={selectedStock === "in stock" && "isSelected"}
+                      className={
+                        selectedStock === "in stock" ? "isSelected" : "button"
+                      }
                       onClick={() => {
                         const newlist = listRef.filter((item) => {
                           return (
@@ -181,7 +195,9 @@ const Test = (props) => {
                   <li>
                     <button
                       className={
-                        selectedStock === "out of stock" && "isSelected"
+                        selectedStock === "out of stock"
+                          ? "isSelected"
+                          : "button"
                       }
                       onClick={() => {
                         const newlist = listRef.filter(
@@ -218,9 +234,13 @@ const Test = (props) => {
                         <p>
                           {Array.from({ length: 5 }).map((_, index) => {
                             return index < item.score ? (
-                              <i key={index} className="fa-solid fa-star"></i>
+                              <div key={index}>
+                                <i className="fa-solid fa-star"></i>
+                              </div>
                             ) : (
-                              <i key={index} className="fa-regular fa-star"></i>
+                              <div key={index}>
+                                <i className="fa-regular fa-star"></i>
+                              </div>
                             );
                           })}
                         </p>

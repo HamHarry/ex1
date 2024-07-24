@@ -45,9 +45,13 @@ const Test2 = (props) => {
                   <p>
                     {Array.from({ length: 5 }).map((_, index) => {
                       return index < popUp.score ? (
-                        <i className="fa-solid fa-star"></i>
+                        <div key={index}>
+                          <i className="fa-solid fa-star"></i>
+                        </div>
                       ) : (
-                        <i className="fa-regular fa-star"></i>
+                        <div key={index}>
+                          <i className="fa-regular fa-star"></i>
+                        </div>
                       );
                     })}
                   </p>
@@ -84,7 +88,7 @@ const Test2 = (props) => {
             <div className="choice">
               <div className="choicemenu">
                 <button
-                  className={selectedType === "food" && "isSelected"}
+                  className={selectedType === "food" ? "isSelected" : "button"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -102,7 +106,9 @@ const Test2 = (props) => {
                   Food
                 </button>
                 <button
-                  className={selectedType === "dessert" && "isSelected"}
+                  className={
+                    selectedType === "dessert" ? "isSelected" : "button"
+                  }
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -120,7 +126,7 @@ const Test2 = (props) => {
                   Dessert
                 </button>
                 <button
-                  className={selectedType === "drink" && "isSelected"}
+                  className={selectedType === "drink" ? "isSelected" : "button"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -138,7 +144,7 @@ const Test2 = (props) => {
                   Drink
                 </button>
                 <button
-                  className={selectedType === "all" && "isSelected"}
+                  className={selectedType === "all" ? "isSelected" : "button"}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -156,7 +162,9 @@ const Test2 = (props) => {
               </div>
               <div className="choicesold">
                 <button
-                  className={selectedStock === "in stock" && "isSelected"}
+                  className={
+                    selectedStock === "in stock" ? "isSelected" : "button"
+                  }
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       return (
@@ -171,7 +179,9 @@ const Test2 = (props) => {
                   In Stock
                 </button>
                 <button
-                  className={selectedStock === "out of stock" && "isSelected"}
+                  className={
+                    selectedStock === "out of stock" ? "isSelected" : "button"
+                  }
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       return (
@@ -210,9 +220,13 @@ const Test2 = (props) => {
                           <p>
                             {Array.from({ length: 5 }).map(() => {
                               return index < item.score ? (
-                                <i className="fa-solid fa-star"></i>
+                                <div key={index}>
+                                  <i className="fa-solid fa-star"></i>
+                                </div>
                               ) : (
-                                <i className="fa-regular fa-star"></i>
+                                <div key={index}>
+                                  <i className="fa-regular fa-star"></i>
+                                </div>
                               );
                             })}
                           </p>
