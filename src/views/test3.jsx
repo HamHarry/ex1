@@ -175,7 +175,6 @@ const Test3 = (props) => {
                     });
                     setList(newlist);
                     setSelectedStock("in stock");
-                    console.log(selectedType);
                   }}
                 >
                   In Stock

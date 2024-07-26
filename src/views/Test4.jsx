@@ -1,6 +1,5 @@
 import { useState } from "react";
 import mockup from "../Mockup";
-
 /* eslint-disable react/prop-types */
 const Test4 = (props) => {
   const [list, setList] = useState(mockup);
@@ -9,6 +8,12 @@ const Test4 = (props) => {
   const [popUp, setPopUp] = useState();
   const [selectStock, setSelectStock] = useState("all");
   const [selectType, setSelectType] = useState("all");
+
+  const onClose = () => {
+    setList(mockup);
+    setSelectType("all");
+    setSelectType("all");
+  };
   return (
     <div>
       <div className="header">
@@ -75,6 +80,7 @@ const Test4 = (props) => {
                 className="fa-solid fa-circle-xmark"
                 onClick={() => {
                   setOpen(!open);
+                  onClose();
                 }}
               ></i>
             </div>
@@ -83,6 +89,7 @@ const Test4 = (props) => {
             <div className="choice">
               <div className="choicemenu">
                 <button
+                  className={selectType === "food" ? "isSelected" : ""}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -99,10 +106,11 @@ const Test4 = (props) => {
                   Food
                 </button>
                 <button
+                  className={selectType === "dessert" ? "isSelected" : ""}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
-                        item.stock < 0 ? "in stock" : "out of stock";
+                        item.stock > 0 ? "in stock" : "out of stock";
                       return (
                         item.type === "dessert" &&
                         (statusStock === selectStock || selectStock === "all")
@@ -115,6 +123,7 @@ const Test4 = (props) => {
                   Dessert
                 </button>
                 <button
+                  className={selectType === "drink" ? "isSelected" : ""}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
@@ -131,10 +140,11 @@ const Test4 = (props) => {
                   Drink
                 </button>
                 <button
+                  className={selectType === "all" ? "isSelected" : ""}
                   onClick={() => {
                     const newlist = listRef.filter((item) => {
                       const statusStock =
-                        item.stock > 0 ? "inStock" : "outStock";
+                        item.stock > 0 ? "in stock" : "out of stock";
                       return (
                         statusStock === selectStock || selectStock === "all"
                       );
@@ -147,8 +157,36 @@ const Test4 = (props) => {
                 </button>
               </div>
               <div className="choicesold">
-                <button>In Stock</button>
-                <button>Out Of Stock</button>
+                <button
+                  className={selectStock === "in stock" ? "isSelected" : ""}
+                  onClick={() => {
+                    const newlist = listRef.filter((item) => {
+                      return (
+                        item.stock > 0 &&
+                        (item.type === selectType || selectType === "all")
+                      );
+                    });
+                    setList(newlist);
+                    setSelectStock("in stock");
+                  }}
+                >
+                  In Stock
+                </button>
+                <button
+                  className={selectStock === "out of stock" ? "isSelected" : ""}
+                  onClick={() => {
+                    const newlist = listRef.filter((item) => {
+                      return (
+                        item.stock <= 0 &&
+                        (item.type === selectType || selectType === "all")
+                      );
+                    });
+                    setList(newlist);
+                    setSelectStock("out of stock");
+                  }}
+                >
+                  Out Of Stock
+                </button>
               </div>
             </div>
             <div className="listdialog">

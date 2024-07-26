@@ -1,28 +1,29 @@
-import Test from "./Test";
 import { useState } from "react";
+import Test from "./Test";
 import Test2 from "./Test2";
-import Test3 from "./Test3";
+import Test3 from "./test3";
 import Test4 from "./Test4";
+import Test5 from "./Test5";
 import "../css/App.css";
 
 const App = () => {
-  const [selectTab, setSelectTab] = useState(0);
+  const [selectTab, setSelectTab] = useState(4);
 
-  const [tabs] = useState([
+  const [tabList] = useState([
     <Test key={0} tab={0} />,
     <Test2 key={1} tab={1} />,
     <Test3 key={2} tab={2} />,
     <Test4 key={3} tab={3} />,
-    <Test key={4} tab={4} />,
+    <Test5 key={4} tab={4} />,
     <Test key={5} tab={5} />,
-    <Test key={6} tab={6} />,
   ]);
 
   return (
     <>
-      {tabs.map((tab, index) => selectTab === index && tab)}
+      {/* {tabList.map((tab, index) => selectTab === index && tab)} */}
+      {tabList.find((item, index) => selectTab === index)}
       <div className="footer">
-        {tabs.map((_, index) => (
+        {tabList.map((_, index) => (
           <div
             className={`select-tab-button ${
               selectTab === index ? "isSelected" : "button"
