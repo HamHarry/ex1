@@ -94,11 +94,9 @@ button {
   width: 100px;
   border-radius: 10px;
 }
-
 .isSelected {
   background-color: aquamarine !important;
 }
-
 .listbox {
   display: grid;
   grid-template-columns: 1fr 7fr;
